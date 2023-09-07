@@ -1,4 +1,4 @@
-import {palavras} from "./palavras.js";
+import { palavras } from "./palavras.js";
 
 class Partida{
     #palavra;
@@ -118,6 +118,14 @@ partida.checarletraPalavra("a");
 partida.checarletraPalavra("c");
 partida.checarletraPalavra("s");
 
+console.log(palavraAleatoria.palavra);
 console.log(partida.listaLetra);
 console.log(partida.tamanho);
 console.log(partida.posicao);
+const result = [];
+for (let i = 0; i < partida.posicao.length; i++) {
+    const element = partida.posicao[i];
+    console.log(element);
+    result.push(element ? element : '_');
+}
+console.log('result: ', result);
