@@ -1,18 +1,35 @@
 <!DOCTYPE html>
 <html lang="pt-br">
-
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/simple-keyboard@latest/build/css/index.css">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="./style.css" />
     <title>Jogo da forca</title>
-</head>
+  </head>
 
-<body>
+  <body>
     <!-- Quatro rodadas -->
     <main>
+      <div id="forca">
+        <img id="boneco" src="./assets/0.png" />
+        <div id="espaco">
+          <span>_</span>
+          <span>_</span>
+          <span>_</span>
+          <span>_</span>
+          <span>_</span>
+          <span>_</span>
+          <span>_</span>
+          <span>_</span>
+          <span>_</span>
+          <span>_</span>
+          <span>_</span>
+        </div>
+      </div>
 
-        <!-- <table>
+      <button id="button">Trocar</button>
+
+      <!-- <table>
             <tr>
                 <th></th>
                 <th>Jogador 1</th>
@@ -55,39 +72,43 @@
                 <td>25</td>
             </tr>
         </table> -->
-        <div id="teclado">
-            <div class="key">A</div>
-            <div class="key">B</div>
-            <div class="key">C</div>
-            <div class="key">D</div>
-            <div class="key">E</div>
-            <div class="key">F</div>
-            <div class="key">G</div>
-            <div class="key">H</div>
-            <div class="key">I</div>
-            <div class="key">J</div>
-            <div class="key">K</div>
-            <div class="key">L</div>
-            <div class="key">M</div>
-            <div class="key">N</div>
-            <div class="key">O</div>
-            <div class="key">P</div>
-            <div class="key">Q</div>
-            <div class="key">R</div>
-            <div class="key">S</div>
-            <div class="key">T</div>
-            <div class="key">U</div>
-            <div class="key">V</div>
-            <div class="key">W</div>
-            <div class="key">X</div>
-            <div class="key">Y</div>
-            <div class="key">Z</div>
+      <div id="teclado">
+        <div>
+          <button class="key" value="q">Q</button>
+          <button class="key" value="w">W</button>
+          <button class="key" value="e">E</button>
+          <button class="key" value="r">R</button>
+          <button class="key" value="t">T</button>
+          <button class="key" value="y">Y</button>
+          <button class="key" value="u">U</button>
+          <button class="key" value="i">I</button>
+          <button class="key" value="o">O</button>
+          <button class="key" value="p">P</button>
         </div>
+        <div>
+          <button class="key" value="a">A</button>
+          <button class="key" value="s">S</button>
+          <button class="key" value="d">D</button>
+          <button class="key" value="f">F</button>
+          <button class="key" value="g">G</button>
+          <button class="key" value="h">H</button>
+          <button class="key" value="j">J</button>
+          <button class="key" value="k">K</button>
+          <button class="key" value="l">L</button>
+        </div>
+
+        <div>
+          <button class="key" value="z">Z</button>
+          <button class="key" value="x">X</button>
+          <button class="key" value="c">C</button>
+          <button class="key" value="v">V</button>
+          <button class="key" value="b">B</button>
+          <button class="key" value="n">N</button>
+          <button class="key" value="m">M</button>
+        </div>
+      </div>
     </main>
-    <script src="./Interface.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/simple-keyboard@latest/build/index.js"></script>
+    <!-- <script src="./Interface.js"></script> -->
     <script type="module" src="./app.js"></script>
-
-</body>
-
+  </body>
 </html>

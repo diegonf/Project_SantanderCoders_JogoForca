@@ -1,0 +1,63 @@
+*,
+*::after,
+*::before {
+  margin: 0;
+  padding: 0;
+  box-sizing: inherit;
+}
+
+body {
+  box-sizing: border-box;
+}
+
+html {
+  font-size: 62.5%;
+}
+
+#teclado {
+  margin-top: 2rem;
+  display: flex;
+  flex-direction: column;
+  row-gap: 1rem;
+}
+#teclado div {
+  display: flex;
+  justify-content: center;
+  gap: 0.5rem;
+}
+#teclado div .key {
+  background-color: #333;
+  color: #eee;
+  font-size: 3rem;
+  border: 1px solid #444;
+  box-shadow: 0 0.2rem 0 0.05rem rgb(34, 34, 34);
+  border-bottom-color: #555;
+  width: 6rem;
+  height: 6rem;
+  text-align: center;
+  padding: 0.5rem;
+  cursor: pointer;
+  border-radius: 0.3rem;
+}
+
+#forca {
+  position: relative;
+  width: 80%;
+  margin: 0 auto;
+}
+#forca #boneco {
+  margin-left: 5rem;
+  width: 40rem;
+}
+
+#espaco {
+  position: absolute;
+  display: flex;
+  width: 100%;
+  font-size: 6rem;
+  justify-content: center;
+  gap: 1rem;
+  top: 85%;
+  left: 50%;
+  transform: translate(-50%, -100%);
+}/*# sourceMappingURL=style.css.map */
