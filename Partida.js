@@ -7,13 +7,14 @@ class Partida{
     #pontuacao;
     #tentativa;
     #listaLetra = [];
-    #posicao = [];
+    #posicao;
     constructor(palavra,dica){
         this.#palavra = palavra.toLowerCase();
         this.#dica = dica;
         this.#tamanho = this.palavra.length;
         this.#pontuacao = 0;
         this.#tentativa = 6;
+        this.#posicao = new Array(this.#tamanho);
     }
     get palavra(){
         return this.#palavra;
@@ -125,7 +126,6 @@ console.log(partida.posicao);
 const result = [];
 for (let i = 0; i < partida.posicao.length; i++) {
     const element = partida.posicao[i];
-    console.log(element);
     result.push(element ? element : '_');
 }
 console.log('result: ', result);
