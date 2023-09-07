@@ -1,4 +1,3 @@
+import * as palavrasJSON from './palavras.json';
 
-class Partida{
-
-}
+console.log(palavrasJSON);
