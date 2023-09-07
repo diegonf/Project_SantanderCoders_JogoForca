@@ -1,6 +1,6 @@
 import { palavras } from "./palavras.js";
 
-export class Partida {
+class Partida {
   #palavra;
   #dica;
   #tamanho;
@@ -103,3 +103,26 @@ export class Partida {
     this.#listaLetra = [];
   }
 }
+
+// Gerar um índice aleatório
+const indiceAleatorio = Math.floor(Math.random() * palavras.length);
+
+// Acessar o item aleatório da lista
+const palavraAleatoria = palavras[indiceAleatorio];
+const partida = new Partida(palavraAleatoria.palavra, palavraAleatoria.dica);
+
+partida.checarletraPalavra("a");
+partida.checarletraPalavra("a");
+partida.checarletraPalavra("c");
+partida.checarletraPalavra("s");
+
+console.log(palavraAleatoria.palavra);
+console.log(partida.listaLetra);
+console.log(partida.tamanho);
+console.log(partida.posicao);
+const result = [];
+for (let i = 0; i < partida.posicao.length; i++) {
+  const element = partida.posicao[i];
+  result.push(element ? element : "_");
+}
+console.log("result: ", result);
