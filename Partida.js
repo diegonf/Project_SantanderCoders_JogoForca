@@ -4,7 +4,6 @@ class Partida{
     #palavra;
     #dica;
     #tamanho;
-    #pontuacao;
     #tentativa;
     #listaLetra = [];
     #posicao;
@@ -12,7 +11,6 @@ class Partida{
         this.#palavra = palavra.toLowerCase();
         this.#dica = dica;
         this.#tamanho = this.palavra.length;
-        this.#pontuacao = 0;
         this.#tentativa = 6;
         this.#posicao = new Array(this.#tamanho);
     }
@@ -38,14 +36,6 @@ class Partida{
 
     set tamanho(tamanho){
         this.#tamanho = tamanho;
-    }
-
-    get pontuacao(){
-        return this.#pontuacao;
-    }
-
-    set pontuacao(pontuacao){
-        this.#pontuacao = pontuacao;
     }
 
     get tentativa(){
@@ -103,7 +93,6 @@ class Partida{
         this.#posicao = [];
         this.#listaLetra = [];
     }
-
 
 }
 
