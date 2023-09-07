@@ -1,4 +1,4 @@
-[
+export const palavras = [
   { "id": 1, "palavra": "BANANA", "dica": "Uma fruta amarela e deliciosa." },
   { "id": 2, "palavra": "CACHORRO", "dica": "O melhor amigo do homem." },
   { "id": 3, "palavra": "GUITARRA", "dica": "Um instrumento musical de cordas." },
@@ -49,4 +49,4 @@
   { "id": 48, "palavra": "INVERNO", "dica": "Uma estação fria do ano." },
   { "id": 49, "palavra": "MELANCIA", "dica": "Uma fruta grande e suculenta." },
   { "id": 50, "palavra": "MACACO", "dica": "Um animal que vive em árvores." }
-]
+];

@@ -1,3 +1,3 @@
-import * as palavrasJSON from './palavras.json';
+import palavras from './palavras.js' assert {type: 'json'};
 
 console.log(palavrasJSON);

@@ -1,4 +1,4 @@
-import * as palavrasJSON from './palavras.json';
+import {palavras} from "./palavras.js";
 
 class Partida{
     #palavra;
@@ -7,8 +7,9 @@ class Partida{
     #pontuacao;
     #tentativa;
     #listaLetra = [];
+    #posicao = [];
     constructor(palavra,dica){
-        this.#palavra = palavra;
+        this.#palavra = palavra.toLowerCase();
         this.#dica = dica;
         this.#tamanho = this.palavra.length;
         this.#pontuacao = 0;
@@ -57,27 +58,66 @@ class Partida{
     get listaLetra(){
         return this.#listaLetra;
     }
+
+    get posicao(){
+        return this.#posicao;
+    }
+
     // 6 letras - acerto = 2 = 6 - 2 = 4
     contarLetrasRestantes(acerto){
         return tamanho - acerto;
     }
 
     marcarLetrasEscolhidas(letra){
-        letra.toLowerCase()
         if(!this.#listaLetra.includes(letra)){
             this.#listaLetra.push(letra)
         }
     }
 
+    checarletraPalavra(letra){
+        letra.toLowerCase()
+        let array = [...this.#palavra]
+        if ( this.#listaLetra.includes(letra)) return
+        
+        if(this.#palavra.includes(letra)){
+            for (let i = 0; i < array.length; i++) {
+                if( letra === array[i]){
+                    this.#posicao[i] = letra;
+                }   
+            }
+
+            this.marcarLetras()
+            this.marcarLetrasEscolhidas(letra)
+            return
+        }
+        this.marcarLetrasEscolhidas(letra)
+
+    }
+
+    marcarLetras(){
+        console.log("deu bom meu chapa");
+    }
+
+    resetar(){
+        this.#posicao = [];
+        this.#listaLetra = [];
+    }
+
 
 }
 
-partida = new Partida("tempo","sei la")
+// Gerar um índice aleatório
+const indiceAleatorio = Math.floor(Math.random() * palavras.length);
 
-partida.marcarLetrasEscolhidas("a");
-partida.marcarLetrasEscolhidas("a");
-partida.marcarLetrasEscolhidas("b");
-partida.marcarLetrasEscolhidas("c");
-partida.marcarLetrasEscolhidas("d");
+// Acessar o item aleatório da lista
+const palavraAleatoria = palavras[indiceAleatorio];
+const partida = new Partida(palavraAleatoria.palavra,palavraAleatoria.dica)
+
+partida.checarletraPalavra("a");
+partida.checarletraPalavra("a");
+partida.checarletraPalavra("c");
+partida.checarletraPalavra("s");
+
 console.log(partida.listaLetra);
 console.log(partida.tamanho);
+console.log(partida.posicao);
