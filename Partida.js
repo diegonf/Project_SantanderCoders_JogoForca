@@ -18,15 +18,15 @@ export class Partida {
     this.#posicao = [];
   }
 
-  init(){
+  init() {
     for (let i = 0; i < this.tamanho; i++) {
       this.#posicao[i] = "_";
     }
-    Interface.imprimir(this.#tamanho,this.#posicao,true);
+    Interface.imprimir(this.#tamanho, this.#posicao, true);
   }
 
-  chamar(){
-    Interface.imprimir(this.#tamanho,this.#posicao);
+  chamar() {
+    Interface.imprimir(this.#tamanho, this.#posicao);
   }
 
   get palavra() {
@@ -91,22 +91,29 @@ export class Partida {
   checarletraPalavra(letra) {
     letra.toLowerCase();
     let array = [...this.#palavra];
-    if (this.#listaLetra.includes(letra)) return;
-
     if (this.#palavra.includes(letra)) {
       for (let i = 0; i < array.length; i++) {
-        if (letra === array[i]) { 
+        if (letra === array[i]) {
           this.#posicao[i] = letra;
-          
-        } 
+        }
       }
 
       // Interface.imprimirLetra();
       this.marcarLetrasEscolhidas(letra);
       return;
+    } else {
+      this.#listaLetra.push(letra);
+      const foto = document.getElementById("boneco");
+      const numeroErro = this.#listaLetra.length;
+      foto.src = `./assets/${numeroErro}.png`;
     }
+    if (this.#listaLetra.includes(letra)) return;
     this.marcarLetrasEscolhidas(letra);
   }
+  //let contador = 1;
+  // trocar.addEventListener("click", () => {
+  //   img.src = `./assets/${contador}.png`;
+  //   contador++;
 
   resetar() {
     this.#posicao = [];
