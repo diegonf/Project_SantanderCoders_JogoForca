@@ -1,6 +1,7 @@
 import { palavras } from "./palavras.js";
+import { Interface } from "./Interface.js";
 
-class Partida {
+export class Partida {
   #palavra;
   #dica;
   #tamanho;
@@ -14,8 +15,20 @@ class Partida {
     this.#tamanho = this.palavra.length;
     this.#pontuacao = 0;
     this.#tentativa = 6;
-    this.#posicao = new Array(this.#tamanho);
+    this.#posicao = [];
   }
+
+  init(){
+    for (let i = 0; i < this.tamanho; i++) {
+      this.#posicao[i] = "_";
+    }
+    Interface.imprimir(this.#tamanho,this.#posicao,true);
+  }
+
+  chamar(){
+    Interface.imprimir(this.#tamanho,this.#posicao);
+  }
+
   get palavra() {
     return this.#palavra;
   }
@@ -82,20 +95,17 @@ class Partida {
 
     if (this.#palavra.includes(letra)) {
       for (let i = 0; i < array.length; i++) {
-        if (letra === array[i]) {
+        if (letra === array[i]) { 
           this.#posicao[i] = letra;
-        }
+          
+        } 
       }
 
-      this.marcarLetras();
+      // Interface.imprimirLetra();
       this.marcarLetrasEscolhidas(letra);
       return;
     }
     this.marcarLetrasEscolhidas(letra);
-  }
-
-  marcarLetras() {
-    console.log("deu bom meu chapa");
   }
 
   resetar() {
@@ -105,24 +115,24 @@ class Partida {
 }
 
 // Gerar um índice aleatório
-const indiceAleatorio = Math.floor(Math.random() * palavras.length);
+// const indiceAleatorio = Math.floor(Math.random() * palavras.length);
 
-// Acessar o item aleatório da lista
-const palavraAleatoria = palavras[indiceAleatorio];
-const partida = new Partida(palavraAleatoria.palavra, palavraAleatoria.dica);
+// // Acessar o item aleatório da lista
+// const palavraAleatoria = palavras[indiceAleatorio];
+// const partida = new Partida(palavraAleatoria.palavra, palavraAleatoria.dica);
 
-partida.checarletraPalavra("a");
-partida.checarletraPalavra("a");
-partida.checarletraPalavra("c");
-partida.checarletraPalavra("s");
+// partida.checarletraPalavra("a");
+// partida.checarletraPalavra("a");
+// partida.checarletraPalavra("c");
+// partida.checarletraPalavra("s");
 
-console.log(palavraAleatoria.palavra);
-console.log(partida.listaLetra);
-console.log(partida.tamanho);
-console.log(partida.posicao);
-const result = [];
-for (let i = 0; i < partida.posicao.length; i++) {
-  const element = partida.posicao[i];
-  result.push(element ? element : "_");
-}
-console.log("result: ", result);
+// console.log(palavraAleatoria.palavra);
+// console.log(partida.listaLetra);
+// console.log(partida.tamanho);
+// console.log(partida.posicao);
+// const result = [];
+// for (let i = 0; i < partida.posicao.length; i++) {
+//   const element = partida.posicao[i];
+//   result.push(element ? element : "_");
+// }
+// console.log("result: ", result);

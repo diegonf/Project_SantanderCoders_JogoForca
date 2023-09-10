@@ -1,9 +1,45 @@
-import keyboard from "keyboard";
 
-class Interface {
+
+export class Interface {
+
+  constructor(){}
   criarPalavra(palavra) {}
-  imprimirLetra(palavra) {}
+  static imprimirLetra(palavra) {
+
+  }
   imprimirTeclado(teclado) {}
+
+  static imprimir(tamanho, posicao,flag = false){
+    let lacunas = [];
+    if(flag){
+      for (let i = 0; i < tamanho; i++) {
+        const div = document.getElementById("espaco");
+        const span = document.createElement("span");
+        span.classList.add("lacuna");
+        div.appendChild(span);
+        }
+  }
+
+  lacunas = document.querySelectorAll(".lacuna")
+  lacunas.forEach((span, i) => {
+    console.log(span);
+    console.log(posicao[i]);
+    span.innerText = posicao[i];
+  });
+
+// for (let i = 0; i < lacunas.length; i++) {
+//   console.log(lacunas[i].textContent);
+//     lacunas.innerText = posicao[i];
+// }
+
+  // lacunas.forEach((span, i) => {
+  //   console.log(i);
+  //   console.log("entrei na de baixo");
+  //   console.log(posicao[i]);
+  //   // span.innerText = posicao[i];
+  // });
+
+}
   imprimirForca() {}
   mostrarPontuacao(pontuacao) {}
   reiniciarPartida() {}
