@@ -69,7 +69,7 @@ export class Controlador {
 
   static #sortearPalavra() {
     const indiceAleatorio = Math.floor(Math.random() * this.#listaPalavras.length);
-    const dadosPalavra = this.#listaPalavras[41];
+    const dadosPalavra = this.#listaPalavras[indiceAleatorio];
     return dadosPalavra;
   }
 
@@ -84,7 +84,6 @@ export class Controlador {
     document.querySelectorAll(".key").forEach((tecla) => {
       tecla.addEventListener("click", () => {
         this.#partida.checarLetraPalavra(tecla.value, '** ' + this.#palavra);
-        // this.#partida.chamar();
       });
     });
   }

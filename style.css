@@ -45,7 +45,7 @@ html {
   display: flex;
   justify-content: center;
   margin: 0 auto;
-  max-width: 70rem;
+  max-width: 75rem;
 }
 #forca #boneco {
   width: 30rem;
@@ -56,7 +56,7 @@ html {
   gap: 1rem;
   justify-content: center;
   margin-bottom: 7rem;
-  margin-left: -5rem;
+  margin-left: -6rem;
   width: 100%;
 }
 @media screen and (max-width: 768px) {
