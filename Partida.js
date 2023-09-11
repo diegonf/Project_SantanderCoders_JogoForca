@@ -1,4 +1,4 @@
-import { palavras } from "./palavras.js";
+import { Controlador } from "./Controlador.js";
 import { Interface } from "./Interface.js";
 
 export class Partida {
@@ -7,26 +7,80 @@ export class Partida {
   #tamanho;
   #pontuacao;
   #tentativa;
-  #listaLetra = [];
-  #posicao;
+  #listaLetraEscolhidas = [];
+  #listaLetrasCorretas;
+  #numeroErros;
   constructor(palavra, dica) {
     this.#palavra = palavra.toLowerCase();
-    this.#dica = dica;
     this.#tamanho = this.palavra.length;
+    this.#listaLetrasCorretas = new Array(this.#tamanho).fill('_');
+    this.#dica = dica;
     this.#pontuacao = 0;
     this.#tentativa = 6;
-    this.#posicao = [];
+    this.#numeroErros = 0;
   }
 
   init() {
-    for (let i = 0; i < this.tamanho; i++) {
-      this.#posicao[i] = "_";
-    }
-    Interface.imprimir(this.#tamanho, this.#posicao, true);
+    Interface.imprimir(this.#tamanho, this.#listaLetrasCorretas, true);
+    const dica = document.querySelector('#dica');
+    dica.textContent = this.#dica;
   }
 
-  chamar() {
-    Interface.imprimir(this.#tamanho, this.#posicao);
+  atualizarLetrasCorretas() {
+    Interface.imprimir(this.#tamanho, this.#listaLetrasCorretas);
+  }
+
+  marcarLetrasEscolhidas(letra) {
+    if (!this.#listaLetraEscolhidas.includes(letra)) {
+      this.#listaLetraEscolhidas.push(letra);
+    }
+  }
+
+  checarLetraPalavra(letra, palavra) {
+    console.log(palavra)
+    letra.toLowerCase();
+    let letrasPalavra = [...this.#palavra];
+    const letraCerta = this.#palavra.includes(letra);
+    if (letraCerta) {
+      for (let i = 0; i < letrasPalavra.length; i++) {
+        if (letra === letrasPalavra[i]) {
+          this.#listaLetrasCorretas[i] = letra;
+        }
+      }
+      this.atualizarLetrasCorretas();
+      const vitoria = !this.#listaLetrasCorretas.includes('_');
+      if (vitoria)
+        setTimeout(() => {
+          this.mostrarResultado(vitoria);
+        }, 500)
+    } else {
+      const foto = document.getElementById("boneco");
+      const erros = ++this.#numeroErros;
+      foto.src = `./assets/${erros}.png`;
+      const perdeu = erros >= 6
+      if (perdeu) {
+        setTimeout(() => {
+          this.mostrarResultado(false);
+        }, 500)
+      }
+    }
+    // this.marcarLetrasEscolhidas(letra);
+  }
+
+  mostrarResultado(vitoria) {
+    if (vitoria) {
+      alert('Você ganhou! Meu chapa!!')
+    } else {
+      alert('Você perdeu! Seu lixo!!')
+    }
+    this.resetar();
+  }
+
+  resetar() {
+    const foto = document.getElementById("boneco");
+    foto.src = `./assets/0.png`;
+
+    Controlador.inicializarPartida();
   }
 
   get palavra() {
@@ -70,76 +124,10 @@ export class Partida {
   }
 
   get listaLetra() {
-    return this.#listaLetra;
+    return this.#listaLetraEscolhidas;
   }
 
   get posicao() {
-    return this.#posicao;
-  }
-
-  // 6 letras - acerto = 2 = 6 - 2 = 4
-  contarLetrasRestantes(acerto) {
-    return tamanho - acerto;
-  }
-
-  marcarLetrasEscolhidas(letra) {
-    if (!this.#listaLetra.includes(letra)) {
-      this.#listaLetra.push(letra);
-    }
-  }
-
-  checarletraPalavra(letra) {
-    letra.toLowerCase();
-    let array = [...this.#palavra];
-    if (this.#palavra.includes(letra)) {
-      for (let i = 0; i < array.length; i++) {
-        if (letra === array[i]) {
-          this.#posicao[i] = letra;
-        }
-      }
-
-      // Interface.imprimirLetra();
-      this.marcarLetrasEscolhidas(letra);
-      return;
-    } else {
-      this.#listaLetra.push(letra);
-      const foto = document.getElementById("boneco");
-      const numeroErro = this.#listaLetra.length;
-      foto.src = `./assets/${numeroErro}.png`;
-    }
-    if (this.#listaLetra.includes(letra)) return;
-    this.marcarLetrasEscolhidas(letra);
-  }
-  //let contador = 1;
-  // trocar.addEventListener("click", () => {
-  //   img.src = `./assets/${contador}.png`;
-  //   contador++;
-
-  resetar() {
-    this.#posicao = [];
-    this.#listaLetra = [];
+    return this.#listaLetrasCorretas;
   }
 }
-
-// Gerar um índice aleatório
-// const indiceAleatorio = Math.floor(Math.random() * palavras.length);
-
-// // Acessar o item aleatório da lista
-// const palavraAleatoria = palavras[indiceAleatorio];
-// const partida = new Partida(palavraAleatoria.palavra, palavraAleatoria.dica);
-
-// partida.checarletraPalavra("a");
-// partida.checarletraPalavra("a");
-// partida.checarletraPalavra("c");
-// partida.checarletraPalavra("s");
-
-// console.log(palavraAleatoria.palavra);
-// console.log(partida.listaLetra);
-// console.log(partida.tamanho);
-// console.log(partida.posicao);
-// const result = [];
-// for (let i = 0; i < partida.posicao.length; i++) {
-//   const element = partida.posicao[i];
-//   result.push(element ? element : "_");
-// }
-// console.log("result: ", result);
