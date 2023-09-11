@@ -5,129 +5,82 @@ export class Partida {
   #palavra;
   #dica;
   #tamanho;
-  #pontuacao;
-  #tentativa;
-  #listaLetraEscolhidas = [];
+  #tentativasPermitidas;
   #listaLetrasCorretas;
   #numeroErros;
-  constructor(palavra, dica) {
+
+  constructor(palavra, dica, tentativasPermitidas) {
     this.#palavra = palavra.toLowerCase();
-    this.#tamanho = this.palavra.length;
-    this.#listaLetrasCorretas = new Array(this.#tamanho).fill('_');
     this.#dica = dica;
-    this.#pontuacao = 0;
-    this.#tentativa = 6;
+    this.#tentativasPermitidas = tentativasPermitidas;
+
+    this.#tamanho = this.#palavra.length;
+    this.#listaLetrasCorretas = new Array(this.#tamanho).fill('_');
     this.#numeroErros = 0;
   }
 
   init() {
     Interface.imprimir(this.#tamanho, this.#listaLetrasCorretas, true);
-    const dica = document.querySelector('#dica');
-    dica.textContent = this.#dica;
   }
 
-  atualizarLetrasCorretas() {
+  checarLetraPalavra(letra, tecla) {
+    letra.toLowerCase();
+    const letraCerta = this.#palavra.includes(letra);
+    if (letraCerta) {
+      this.#atualizarTeclado(tecla, 'correta')
+      this.#atualizarLetrasCorretas(letra);
+      this.#checarResultadoFinal();
+    } else {
+      this.#atualizarTeclado(tecla, 'errada')
+      this.#atualizarIndiceBoneco(++this.#numeroErros);
+      this.#checarResultadoFinal();
+    }
+  }
+
+  #atualizarLetrasCorretas(letra) {
+    let letrasPalavra = [...this.#palavra];
+    for (let i = 0; i < letrasPalavra.length; i++) {
+      if (letra === letrasPalavra[i]) {
+        this.#listaLetrasCorretas[i] = letra;
+      }
+    }
+
     Interface.imprimir(this.#tamanho, this.#listaLetrasCorretas);
   }
 
-  marcarLetrasEscolhidas(letra) {
-    if (!this.#listaLetraEscolhidas.includes(letra)) {
-      this.#listaLetraEscolhidas.push(letra);
-    }
-  }
-
-  checarLetraPalavra(letra, palavra) {
-    console.log(palavra)
-    letra.toLowerCase();
-    let letrasPalavra = [...this.#palavra];
-    const letraCerta = this.#palavra.includes(letra);
-    if (letraCerta) {
-      for (let i = 0; i < letrasPalavra.length; i++) {
-        if (letra === letrasPalavra[i]) {
-          this.#listaLetrasCorretas[i] = letra;
-        }
-      }
-      this.atualizarLetrasCorretas();
-      const vitoria = !this.#listaLetrasCorretas.includes('_');
-      if (vitoria)
-        setTimeout(() => {
-          this.mostrarResultado(vitoria);
-        }, 500)
-    } else {
-      const foto = document.getElementById("boneco");
-      const erros = ++this.#numeroErros;
-      foto.src = `./assets/${erros}.png`;
-      const perdeu = erros >= 6
-      if (perdeu) {
-        setTimeout(() => {
-          this.mostrarResultado(false);
-        }, 500)
-      }
-    }
-    // this.marcarLetrasEscolhidas(letra);
-  }
-
-  mostrarResultado(vitoria) {
-    if (vitoria) {
-      alert('Você ganhou! Meu chapa!!')
-    } else {
-      alert('Você perdeu! Seu lixo!!')
-    }
-    this.resetar();
-  }
-
-  resetar() {
+  #atualizarIndiceBoneco(indice) {
     const foto = document.getElementById("boneco");
-    foto.src = `./assets/0.png`;
+    foto.src = `./assets/${indice}.png`;
+  }
 
+  #atualizarTeclado(tecla, classe) {
+    tecla.classList.add(classe);
+    tecla.disabled = true;
+  }
+
+  #checarResultadoFinal() {
+    let resultado = '';
+    resultado = !this.#listaLetrasCorretas.includes('_') ? 'vitoria' : this.#numeroErros >= this.#tentativasPermitidas ? 'derrota' : '';
+
+    if (resultado === 'vitoria') {
+      setTimeout(() => {
+        alert('Você ganhou! Meu chapa!!');
+        this.resetarPartida();
+      }, 500);
+    } else if (resultado === 'derrota') {
+      setTimeout(() => {
+        alert('Você perdeu! Seu lixo!!');
+        this.resetarPartida();
+      }, 500);
+    }
+  }
+
+  resetarPartida() {
+    this.#atualizarIndiceBoneco(0);
     Controlador.inicializarPartida();
-  }
-
-  get palavra() {
-    return this.#palavra;
-  }
-
-  set palavra(palavra) {
-    this.#palavra = palavra;
   }
 
   get dica() {
     return this.#dica;
-  }
-
-  set dica(dica) {
-    this.#dica = dica;
-  }
-
-  get tamanho() {
-    return this.#tamanho;
-  }
-
-  set tamanho(tamanho) {
-    this.#tamanho = tamanho;
-  }
-
-  get pontuacao() {
-    return this.#pontuacao;
-  }
-
-  set pontuacao(pontuacao) {
-    this.#pontuacao = pontuacao;
-  }
-
-  get tentativa() {
-    return this.#tentativa;
-  }
-
-  set tentativa(tentativa) {
-    this.#tentativa = tentativa;
-  }
-
-  get listaLetra() {
-    return this.#listaLetraEscolhidas;
-  }
-
-  get posicao() {
-    return this.#listaLetrasCorretas;
   }
 }

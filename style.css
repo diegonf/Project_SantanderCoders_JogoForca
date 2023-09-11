@@ -39,6 +39,15 @@ html {
   cursor: pointer;
   border-radius: 0.3rem;
 }
+#teclado div .key:disabled {
+  cursor: not-allowed;
+}
+#teclado div .correta {
+  background: rgb(22, 227, 22);
+}
+#teclado div .errada {
+  background: rgb(209, 62, 62);
+}
 
 #forca {
   align-items: end;

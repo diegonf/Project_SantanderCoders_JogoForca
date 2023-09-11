@@ -54,16 +54,16 @@ export class Controlador {
     { id: 50, palavra: "MACACO", dica: "Um animal" },
   ];
   static #partida;
-  static #palavra;
   constructor() { }
 
   static inicializarPartida() {
     const dadosPalavra = this.#sortearPalavra();
-    this.#partida = new Partida(dadosPalavra.palavra, dadosPalavra.dica);
+    const numeroTentativas = 6;
+    this.#partida = new Partida(dadosPalavra.palavra, dadosPalavra.dica, numeroTentativas);
     this.#partida.init()
     this.#configurarTeclado();
+    this.#imprimirDica();
 
-    this.#palavra = dadosPalavra.palavra;
     console.log(dadosPalavra.palavra);
   }
 
@@ -74,17 +74,27 @@ export class Controlador {
   }
 
   static #configurarTeclado() {
-    // removo eventos anteriores
-    document.querySelectorAll(".key").forEach((tecla) => {
-      const clone = tecla.cloneNode(true);
-      tecla.parentNode.replaceChild(clone, tecla);
-    });
+    this.#resetarEventosTeclado();
     
     // adiciona eventos novos
     document.querySelectorAll(".key").forEach((tecla) => {
       tecla.addEventListener("click", () => {
-        this.#partida.checarLetraPalavra(tecla.value, '** ' + this.#palavra);
+        this.#partida.checarLetraPalavra(tecla.value, tecla);
       });
+    });
+  }
+
+  static #imprimirDica() {
+    const dica = document.querySelector('#dica');
+    dica.textContent = this.#partida.dica;
+  }
+
+  static #resetarEventosTeclado() {
+    document.querySelectorAll(".key").forEach((tecla) => {
+      const clone = tecla.cloneNode(true);
+      clone.disabled = false;
+      clone.classList.remove('correta','errada');
+      tecla.parentNode.replaceChild(clone, tecla);
     });
   }
 
