@@ -9,7 +9,7 @@ export class Controlador {
     { id: 5, palavra: "ABACAXI", dica: "Uma fruta" },
     { id: 6, palavra: "PIZZARIA", dica: "Um estabelecemento comercial" },
     { id: 7, palavra: "ELEFANTE", dica: "Um animal" },
-    { id: 8, palavra: "ABÓBORA", dica: "Uma planta cultivada no outono" },
+    { id: 8, palavra: "ABOBORA", dica: "Uma planta cultivada no outono" },
     { id: 9, palavra: "VIOLINO", dica: "Um instrumento musical" },
     { id: 10, palavra: "PRAIA", dica: "Um lugar onde você pode relaxar" },
     { id: 11, palavra: "FLORESTA", dica: "Um lugar cheio de árvores e vida selvagem" },
@@ -36,10 +36,10 @@ export class Controlador {
     { id: 32, palavra: "PIPOCA", dica: "Uma comida" },
     { id: 33, palavra: "CASA", dica: "Um lugar" },
     { id: 34, palavra: "PINTURA", dica: "Uma forma de arte" },
-    { id: 35, palavra: "PRAÇA", dica: "Um lugar" },
+    { id: 35, palavra: "GRANA", dica: "Todos querem" },
     { id: 36, palavra: "FILME", dica: "Tem no shopping" },
     { id: 37, palavra: "FLOR", dica: "Uma planta" },
-    { id: 38, palavra: "DINHEIRO", dica: "Um objeto" },
+    { id: 38, palavra: "DINHEIRO", dica: "Todos querem" },
     { id: 39, palavra: "TIGRE", dica: "Um animal" },
     { id: 40, palavra: "RELOGIO", dica: "Um objeto" },
     { id: 41, palavra: "MOTO", dica: "Meio de transporte" },
@@ -69,7 +69,7 @@ export class Controlador {
 
   static #sortearPalavra() {
     const indiceAleatorio = Math.floor(Math.random() * this.#listaPalavras.length);
-    const dadosPalavra = this.#listaPalavras[indiceAleatorio];
+    const dadosPalavra = this.#listaPalavras[41];
     return dadosPalavra;
   }
 

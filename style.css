@@ -41,25 +41,43 @@ html {
 }
 
 #forca {
-  position: relative;
-  width: 80%;
+  align-items: end;
+  display: flex;
+  justify-content: center;
   margin: 0 auto;
+  max-width: 70rem;
 }
 #forca #boneco {
-  margin-left: 5rem;
-  width: 40rem;
+  width: 30rem;
+}
+#forca #espaco {
+  display: flex;
+  font-size: 5rem;
+  gap: 1rem;
+  justify-content: center;
+  margin-bottom: 7rem;
+  margin-left: -5rem;
+  width: 100%;
+}
+@media screen and (max-width: 768px) {
+  #forca {
+    flex-direction: column;
+    align-items: start;
+  }
+  #forca #espaco {
+    margin: 0;
+    margin-top: -4rem;
+    margin-bottom: 2rem;
+  }
 }
 
-#espaco {
-  position: absolute;
-  display: flex;
-  width: 100%;
-  font-size: 6rem;
-  justify-content: center;
-  gap: 1rem;
-  top: 85%;
-  left: 50%;
-  transform: translate(-50%, -100%);
+main {
+  padding-bottom: 3rem;
+}
+@media screen and (max-width: 768px) {
+  main {
+    padding: 2rem;
+  }
 }
 
 #dica {
