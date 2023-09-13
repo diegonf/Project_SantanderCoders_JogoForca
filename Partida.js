@@ -73,7 +73,9 @@ export class Partida {
       }, 500);
     } else if (resultado === "derrota") {
       setTimeout(() => {
-        alert("Você perdeu! Tente mais uma vez :)");
+        alert(
+          `Você perdeu! A palavra era: ${this.#palavra}. Tente novamente :)`
+        );
         this.resetarPartida();
       }, 500);
     }

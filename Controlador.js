@@ -12,7 +12,11 @@ export class Controlador {
     { id: 8, palavra: "ABOBORA", dica: "Uma planta cultivada no outono" },
     { id: 9, palavra: "VIOLINO", dica: "Um instrumento musical" },
     { id: 10, palavra: "PRAIA", dica: "Um lugar onde você pode relaxar" },
-    { id: 11, palavra: "FLORESTA", dica: "Um lugar cheio de árvores e vida selvagem" },
+    {
+      id: 11,
+      palavra: "FLORESTA",
+      dica: "Um lugar cheio de árvores e vida selvagem",
+    },
     { id: 12, palavra: "BICICLETA", dica: "Um meio de transporte" },
     { id: 13, palavra: "TELEFONE", dica: "Um objeto" },
     { id: 14, palavra: "ARROZ", dica: "Um alimento" },
@@ -20,7 +24,7 @@ export class Controlador {
     { id: 16, palavra: "AMIGO", dica: "Alguém próximo" },
     { id: 17, palavra: "COMPUTADOR", dica: "Um objeto" },
     { id: 18, palavra: "FUTEBOL", dica: "Um esporte" },
-    { id: 19, palavra: "MUSICA", dica: "Sons organizados." },
+    { id: 19, palavra: "MUSICA", dica: "Sons organizados" },
     { id: 20, palavra: "DENTISTA", dica: "Uma profissão" },
     { id: 21, palavra: "PASTA", dica: "Um objeto" },
     { id: 22, palavra: "AVIAO", dica: "Meio de transporte" },
@@ -31,7 +35,7 @@ export class Controlador {
     { id: 27, palavra: "CARRO", dica: "Meio de transporte" },
     { id: 28, palavra: "ESCOLA", dica: "Um local" },
     { id: 29, palavra: "SOL", dica: "Fonte de luz" },
-    { id: 30, palavra: "CAMINHO", dica: "Uma rota a ser seguida." },
+    { id: 30, palavra: "CAMINHO", dica: "Uma rota a ser seguida" },
     { id: 31, palavra: "PAPEL", dica: "Um objeto" },
     { id: 32, palavra: "PIPOCA", dica: "Uma comida" },
     { id: 33, palavra: "CASA", dica: "Um lugar" },
@@ -43,24 +47,28 @@ export class Controlador {
     { id: 39, palavra: "TIGRE", dica: "Um animal" },
     { id: 40, palavra: "RELOGIO", dica: "Um objeto" },
     { id: 41, palavra: "MOTO", dica: "Meio de transporte" },
-    { id: 42, palavra: "CEU", dica: "O espaço acima da Terra. " },
+    { id: 42, palavra: "CEU", dica: "O espaço acima da Terra" },
     { id: 43, palavra: "NADAR", dica: "Um esporte" },
     { id: 44, palavra: "HOSPITAL", dica: "Um local" },
     { id: 45, palavra: "JANELA", dica: "Tem em todas as construções" },
     { id: 46, palavra: "CACHOEIRA", dica: "Água caindo" },
     { id: 47, palavra: "ANIVERSARIO", dica: "Uma data" },
-    { id: 48, palavra: "INVERNO", dica: "Uma estação do ano." },
+    { id: 48, palavra: "INVERNO", dica: "Uma estação do ano" },
     { id: 49, palavra: "MELANCIA", dica: "Uma fruta" },
     { id: 50, palavra: "MACACO", dica: "Um animal" },
   ];
   static #partida;
-  constructor() { }
+  constructor() {}
 
   static inicializarPartida() {
     const dadosPalavra = this.#sortearPalavra();
     const numeroTentativas = 6;
-    this.#partida = new Partida(dadosPalavra.palavra, dadosPalavra.dica, numeroTentativas);
-    this.#partida.init()
+    this.#partida = new Partida(
+      dadosPalavra.palavra,
+      dadosPalavra.dica,
+      numeroTentativas
+    );
+    this.#partida.init();
     this.#configurarTeclado();
     this.#imprimirDica();
 
@@ -68,14 +76,16 @@ export class Controlador {
   }
 
   static #sortearPalavra() {
-    const indiceAleatorio = Math.floor(Math.random() * this.#listaPalavras.length);
+    const indiceAleatorio = Math.floor(
+      Math.random() * this.#listaPalavras.length
+    );
     const dadosPalavra = this.#listaPalavras[indiceAleatorio];
     return dadosPalavra;
   }
 
   static #configurarTeclado() {
     this.#resetarEventosTeclado();
-    
+
     // adiciona eventos novos
     document.querySelectorAll(".key").forEach((tecla) => {
       tecla.addEventListener("click", () => {
@@ -85,7 +95,7 @@ export class Controlador {
   }
 
   static #imprimirDica() {
-    const dica = document.querySelector('#dica');
+    const dica = document.querySelector("#dica");
     dica.textContent = this.#partida.dica;
   }
 
@@ -93,9 +103,8 @@ export class Controlador {
     document.querySelectorAll(".key").forEach((tecla) => {
       const clone = tecla.cloneNode(true);
       clone.disabled = false;
-      clone.classList.remove('correta','errada');
+      clone.classList.remove("correta", "errada");
       tecla.parentNode.replaceChild(clone, tecla);
     });
   }
-
 }
