@@ -5,7 +5,7 @@ Projeto em grupo - Santander Coders
 ## Participantes
 * Ana
 * Diego
-* Gabrielle
+* Gabriella
 * Octavio
 * Samuel
 

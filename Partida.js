@@ -15,7 +15,7 @@ export class Partida {
     this.#tentativasPermitidas = tentativasPermitidas;
 
     this.#tamanho = this.#palavra.length;
-    this.#listaLetrasCorretas = new Array(this.#tamanho).fill('_');
+    this.#listaLetrasCorretas = new Array(this.#tamanho).fill("_");
     this.#numeroErros = 0;
   }
 
@@ -27,11 +27,11 @@ export class Partida {
     letra.toLowerCase();
     const letraCerta = this.#palavra.includes(letra);
     if (letraCerta) {
-      this.#atualizarTeclado(tecla, 'correta')
+      this.#atualizarTeclado(tecla, "correta");
       this.#atualizarLetrasCorretas(letra);
       this.#checarResultadoFinal();
     } else {
-      this.#atualizarTeclado(tecla, 'errada')
+      this.#atualizarTeclado(tecla, "errada");
       this.#atualizarIndiceBoneco(++this.#numeroErros);
       this.#checarResultadoFinal();
     }
@@ -59,17 +59,21 @@ export class Partida {
   }
 
   #checarResultadoFinal() {
-    let resultado = '';
-    resultado = !this.#listaLetrasCorretas.includes('_') ? 'vitoria' : this.#numeroErros >= this.#tentativasPermitidas ? 'derrota' : '';
+    let resultado = "";
+    resultado = !this.#listaLetrasCorretas.includes("_")
+      ? "vitoria"
+      : this.#numeroErros >= this.#tentativasPermitidas
+      ? "derrota"
+      : "";
 
-    if (resultado === 'vitoria') {
+    if (resultado === "vitoria") {
       setTimeout(() => {
-        alert('Você ganhou! Meu chapa!!');
+        alert("Você ganhou! Meu chapa!!");
         this.resetarPartida();
       }, 500);
-    } else if (resultado === 'derrota') {
+    } else if (resultado === "derrota") {
       setTimeout(() => {
-        alert('Você perdeu! Seu lixo!!');
+        alert("Você perdeu! Tente mais uma vez :)");
         this.resetarPartida();
       }, 500);
     }
