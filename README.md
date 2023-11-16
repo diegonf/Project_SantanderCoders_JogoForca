@@ -1,3 +1,5 @@
+<p align="center"><img src="./img_jogo.PNG" width=300 style="display: block; margin: auto;"></p>
+
 # Jogo da Forca
 Projeto desenvolvido em grupo no programa Santander Coders Frontend
 <br>Módulo: Programação Orientada a Objetos
