@@ -1,6 +1,7 @@
 # Jogo da Forca
-Projeto em grupo - Santander Coders
+Projeto desenvolvido em grupo no programa Santander Coders Frontend
 <br>Módulo: Programação Orientada a Objetos
+Projeto publicado: https://diegonf.github.io/Project_SantanderCoders_JogoForca/
 
 ## Participantes
 * Ana
